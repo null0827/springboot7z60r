@@ -16,7 +16,7 @@ import com.entity.view.CartView;
  *
  * @author 
  * @email 
- * @date 2021-03-13 12:49:52
+ * @date 2025-06-02 12:49:52
  */
 public interface CartService extends IService<CartEntity> {
 
