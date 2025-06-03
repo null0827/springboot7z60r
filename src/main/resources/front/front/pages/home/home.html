@@ -1,7 +1,7 @@
 
 <!DOCTYPE html>
-<html>
-<head lang="en">
+<html lang="zh-CN">
+<head>
 <meta charset="utf-8">
 <title>首页</title>
 <meta name="description" content="" />
@@ -85,7 +85,7 @@
 		flex-wrap: wrap;
 	}
     	.index-pv1 .box .list .list-item {
-		flex: 0 0 ${var1}%;
+		flex: 0 0 20%;
 		padding: 0 5px;
 		box-sizing: border-box;
 	}
@@ -373,7 +373,7 @@
 	}
 
             	.index-pv3 .box .list .list-item {
-  		flex: 0 0 ${var3}%;
+  		flex: 0 0 25%;
   		padding: 0 10px;
   		box-sizing: border-box;
   	}
@@ -400,7 +400,6 @@
 	#new-list-6 .swiper-wrapper {
 		-webkit-transition-timing-function: linear;
 		-moz-transition-timing-function: linear;
-		-ms-transition-timing-function: linear;
 		-o-transition-timing-function: linear;
 		transition-timing-function: linear;
 	}
@@ -411,7 +410,7 @@
 		<div class="layui-carousel" id="test1" :style='{"boxShadow":"0 0px 0px #fff143","margin":"0 ","borderColor":"rgba(0,0,0,.3)","borderRadius":"0px","borderWidth":"0","width":"100%","borderStyle":"solid"}'>
 		  <div carousel-item>
 			<div v-for="(item,index) in swiperList" :key="index">
-				<img style="width: 100%;height: 100%;object-fit:cover;" :src="item.img" />
+				<img style="width: 100%;height: 100%;object-fit:cover;" :src="item.img" alt="轮播图" />
 			</div>
 		  </div>
 		</div>
@@ -428,14 +427,16 @@
     </div>
 
 	<div :style='{"display": "flex","justify-content": "center","padding":"20px"}'>
+		<label for="queryName" style="display: none;">查询类型</label>
 		<select v-if="queryList.length>1" @change="queryChange($event)" name="queryName" id="queryName">
 			<option v-for="(item,index) in queryList" v-bind:key="index" :value="index">{{item.queryName}}</option>
 		</select>
-		<div v-if="queryIndex==0" class="item-list">
+		<div v-if="queryIndex===0" class="item-list">
+			<label for="shangpinxinxishangpinmingcheng" style="display: none;">商品名称</label>
 			<input type="text" :style='{"boxShadow":"0 0 6px rgba(255,0,0,0)","borderColor":"rgba(102, 93, 93, 1)","backgroundColor":"#fff","color":"#333","borderRadius":"6px","textAlign":"center","borderWidth":"1px","width":"150px","fontSize":"14px","borderStyle":"solid","height":"40px"}'
 			 name="shangpinxinxishangpinmingcheng" id="shangpinxinxishangpinmingcheng" placeholder="商品名称" autocomplete="off" class="layui-input">
 		</div>
-		<button v-if="queryIndex==0" :style='{"padding":"0 15px","boxShadow":"0 0 8px rgba(0,0,0,0)","margin":"0 0 0 10px","borderColor":"#409EFF","backgroundColor":"rgba(23, 124, 176, 1)","color":"#fff","borderRadius":"6px","borderWidth":"0","width":"auto","fontSize":"18px","borderStyle":"solid","height":"40px"}'
+		<button v-if="queryIndex===0" :style='{"padding":"0 15px","boxShadow":"0 0 8px rgba(0,0,0,0)","margin":"0 0 0 10px","borderColor":"#409EFF","backgroundColor":"rgba(23, 124, 176, 1)","color":"#fff","borderRadius":"6px","borderWidth":"0","width":"auto","fontSize":"18px","borderStyle":"solid","height":"40px"}'
 		 id="btn-search" @click="jump('../shangpinxinxi/list.html')" type="button" class="layui-btn layui-btn-normal">
 			<i v-if="true" class="layui-icon layui-icon-search"></i>搜索
 		</button>
@@ -486,7 +487,7 @@
 		</div>
 		<div class="clear"></div>
 		<div style="text-align: center;">
-		<button @click="jump('../shangpinxinxi/list.html')" style="display: block;cursor: pointer;" type="button" :style='{"padding":"0 15px","boxShadow":"0 0 6px rgba(255,0,0,0)","margin":"4px auto","borderColor":"#ccc","backgroundColor":"rgba(227, 249, 253, 0)","color":"rgba(14, 14, 14, 1)","borderRadius":"6px","borderWidth":"0","width":"auto","fontSize":"16px","borderStyle":"solid","height":"34px"}'>查看更多<i v-if="false" :style='{"isshow":false,"padding":"0px 0 0 3px","fontSize":"16px","color":"rgba(33, 31, 31, 1)"}' class="layui-icon layui-icon-next"></i></el-button>
+		<button @click="jump('../shangpinxinxi/list.html')" style="display: block;cursor: pointer;" type="button" :style='{"padding":"0 15px","boxShadow":"0 0 6px rgba(255,0,0,0)","margin":"4px auto","borderColor":"#ccc","backgroundColor":"rgba(227, 249, 253, 0)","color":"rgba(14, 14, 14, 1)","borderRadius":"6px","borderWidth":"0","width":"auto","fontSize":"16px","borderStyle":"solid","height":"34px"}'>查看更多<i v-if="false" :style='{"isshow":false,"padding":"0px 0 0 3px","fontSize":"16px","color":"rgba(33, 31, 31, 1)"}' class="layui-icon layui-icon-next"></i></button>
 		</div>
 	  </div>
 	</div>
@@ -499,7 +500,7 @@
 	      <span>HOME NEWS</span><span>商品资讯</span>
 	    </div>
 	    <div class="list">
-	      <div v-for="(item,index) in newsList" :key="index" class="list-item" @click="jump('../news/detail.html?id='+item.id)" :class="2=='1'?'list-item1':2=='3'?'list-item3':''">
+	      <div v-for="(item,index) in newsList" :key="index" class="list-item" @click="jump('../news/detail.html?id='+item.id)" :class="2==='1'?'list-item1':2==='3'?'list-item3':''" &gt;>
 	        <div class="list-item-body animation-box" :style='{"padding":"6px","boxShadow":"0 0 0px","margin":"0 0 10px 0","borderColor":"rgba(0,0,0,.3)","backgroundColor":"#fff","borderRadius":"4px","borderWidth":"0","borderStyle":"solid"}'>
 			  <img :style='{"boxShadow":"0px 0px 0px #88ada6","borderColor":"rgba(0,0,0,.3)","borderRadius":"4px","borderWidth":"0","width":"280px","borderStyle":"solid","height":"230px"}' :src="item.picture" alt="" />
 	          <div class="item-info">
@@ -511,7 +512,7 @@
 	    </div>
 	    <div class="clear"></div>
 	    <div style="text-align: center;">
-		<button @click="jump('../news/list.html')" style="display: block;cursor: pointer;" type="button" :style='{"padding":"0 15px","boxShadow":"0 0 6px rgba(255,0,0,0)","margin":"4px auto","borderColor":"#ccc","backgroundColor":"rgba(227, 249, 253, 0)","color":"rgba(14, 14, 14, 1)","borderRadius":"6px","borderWidth":"0","width":"auto","fontSize":"16px","borderStyle":"solid","height":"34px"}'>查看更多<i v-if="false" :style='{"isshow":false,"padding":"0px 0 0 3px","fontSize":"16px","color":"rgba(33, 31, 31, 1)"}' class="layui-icon layui-icon-next"></i></el-button>
+		<el-button @click="jump('../news/list.html')" style="display: block;cursor: pointer;" type="button" :style='{"padding":"0 15px","boxShadow":"0 0 6px rgba(255,0,0,0)","margin":"4px auto","borderColor":"#ccc","backgroundColor":"rgba(227, 249, 253, 0)","color":"rgba(14, 14, 14, 1)","borderRadius":"6px","borderWidth":"0","width":"auto","fontSize":"16px","borderStyle":"solid","height":"34px"}'>查看更多<i v-if="false" :style='{"isshow":false,"padding":"0px 0 0 3px","fontSize":"16px","color":"rgba(33, 31, 31, 1)"}' class="layui-icon layui-icon-next"></i></el-button>
 	    </div>
 	  </div>
 	</div>
