@@ -62,7 +62,7 @@ var indexNav = [
 },
 ]
 
-var adminurl =  "http://localhost:8080/springboot7z60r/admin/dist/index.html";
+var adminurl = window.ENV_CONFIG ? window.ENV_CONFIG.getAdminUrl() : "http://localhost:8080/springboot7z60r/admin/dist/index.html";
 
 var cartFlag = false
 
